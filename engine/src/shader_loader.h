@@ -1,0 +1,1 @@
+const char* shader_load(char title[]);

@@ -6,6 +6,9 @@ option(engine_building "" ON)
 option(game_building "" ON)
 
 
+set(CMAKE_GENERATOR MinGW Makefiles)
+set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
+set(CMAKE_BUILD_TYPE DEBUG)
 set(COMPILE_OPTIONS
 	-Wall
 	-Wextra
@@ -14,12 +17,6 @@ set(COMPILE_OPTIONS
 set(COMPILE_FEATURES 
 	c_std_23
 )
-
-set(GLFW_include_path ${CMAKE_SOURCE_DIR}/external/glfw/include)
-set(GLFW_lib_path ${CMAKE_SOURCE_DIR}/external/glfw/lib/libglfw3.a)
-
-set(GLEW_include_path ${CMAKE_SOURCE_DIR}/external/glew/include)
-set(GLEW_lib_path ${CMAKE_SOURCE_DIR}/external/glew/lib/libglew32.a)
 
 
 if (engine_building)
