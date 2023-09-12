@@ -8,35 +8,24 @@
 #include <GLFW/glfw3.h>
 
 
-const char * const* shader_load(char title[]) {
-	FILE* file = fopen(title, "r");
- 	int length = 0;
-
- 	#ifdef DEBUG
+GLchar* shader_load(char title[]) {
+    FILE *file = fopen(title, "r");
+    
+	#ifdef DEBUG
 	    if (!file) {
 	        printf("!!! ERROR in loading shader %s !!!\n", title);
 	    } else {
 	    	printf("COMPLETE loading shader %s\n", title);
 	    }
 	#endif // DEBUG
- 
-	while (fgetc(file) != EOF) {
-		++length;
-	}
 
-	rewind(file);
+    fseek(file, 0L, SEEK_END);
+    long int length = ftell(file);
+    rewind(file);
 
-    char shader_source[length];
-
-	for (int i = 0; i < length; ++i) {
-		shader_source[i] = fgetc(file);
-	}
-
+    GLchar* shader = memset(malloc(sizeof(GLchar) * (length + 1)), '\0', sizeof(GLchar) * (length + 1));
+    fread(shader, sizeof(GLchar), length, file);
     fclose(file);
 
-	const char* a;
-	strcpy(a, shader_source);
-	const char* const* b = a;
-
-    return b;
-} 
+    return shader;
+}

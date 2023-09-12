@@ -15,6 +15,19 @@ GLuint VAO, VBO, EBO;
 GLuint shaderProgram;
 GLuint count;
 
+const GLchar* fragSource = 
+"#version 460 core\n"
+"layout(location = 0) out vec4 color;"
+"void main() {"
+"    color = vec4(1.0f, 0.5f, 0.2f, 1.0f);"
+"}\0";
+
+const GLchar* vertSource = 
+"#version 460 core\n"
+"layout(location = 0) in vec3 position;"
+"void main() {"
+"    gl_Position = vec4(position.x, position.y, position.z, 1.0f);"
+"}\0";
 
 void test2d_draw() {
     GLfloat vertices[] = {
@@ -95,7 +108,8 @@ void Engine_init(int window_width, int window_height, char title[], bool full_sc
 
 
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, shader_load("C:/Users/takayama/Deskto/project_y/engine/shaders/default.vert"), NULL);
+    const GLchar* vertexSource = shader_load("C:/Users/takayama/Desktop/project_y/engine/shaders/default.vert");
+    glShaderSource(vertexShader, 1, (const GLchar**)&vertexSource, NULL);
     glCompileShader(vertexShader);
     
     #ifdef DEBUG
@@ -112,7 +126,9 @@ void Engine_init(int window_width, int window_height, char title[], bool full_sc
 
 
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, shader_load("C:/Users/takayama/Deskto/project_y/engine/shaders/default.frag"), NULL);
+    const GLchar* fragmentSource = shader_load("C:/Users/takayama/Desktop/project_y/engine/shaders/default.frag");
+    glShaderSource(vertexShader, 1, (const GLchar**)&fragmentSource, NULL);
+    glShaderSource(fragmentShader, 1, &fragSource, NULL);
     glCompileShader(fragmentShader);
 
     #ifdef DEBUG
