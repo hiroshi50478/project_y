@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdbool.h>
 #include <string.h>
 
 #include <glad/glad.h>
@@ -19,7 +18,7 @@ void obj_load(char title[]) {
 	int polygons_count = 0;
 	char c;
 
-	while(true) {
+	while(1) {
 		c = getc(file);
 		// comments
 		if (c == '#') {
@@ -72,7 +71,7 @@ void obj_load(char title[]) {
 	int textures_index = 0;
 	int polygons_index = 0;
 
-	while(true) {
+	while(1) {
 		c = getc(file);
 		if (c == '#') {
 			while (getc(file) != '\n') {}
