@@ -8,7 +8,7 @@
 #include <GLFW/glfw3.h>
 
 
-const char* shader_load(char title[]) {
+const char * const* shader_load(char title[]) {
 	FILE* file = fopen(title, "r");
  	int length = 0;
 
@@ -34,7 +34,9 @@ const char* shader_load(char title[]) {
 
     fclose(file);
 
-	const char *ptr_shader_source = shader_source;
+	const char* a;
+	strcpy(a, shader_source);
+	const char* const* b = a;
 
-    return ptr_shader_source;
+    return b;
 } 

@@ -8,12 +8,12 @@ option(game_building "" ON)
 
 set(CMAKE_GENERATOR MinGW Makefiles)
 set(CMAKE_BINARY_DIR ${CMAKE_SOURCE_DIR}/build)
-set(CMAKE_BUILD_TYPE DEBUG)
+set(CMAKE_BUILD_TYPE Debug)
 set(COMPILE_OPTIONS
 	-Wall
 	-Wextra
 	-Wpedantic
-)
+)   
 set(COMPILE_FEATURES 
 	c_std_23
 )

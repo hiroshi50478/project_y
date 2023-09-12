@@ -1,1 +1,1 @@
-const char* shader_load(char title[]);
+const char * const* shader_load(char title[]);
