@@ -15,56 +15,13 @@ GLuint VAO, VBO, EBO;
 GLuint shaderProgram;
 GLuint count;
 
-const GLchar* fragSource = 
-"#version 460 core\n"
-"layout(location = 0) out vec4 color;"
-"void main() {"
-"    color = vec4(1.0f, 0.5f, 0.2f, 1.0f);"
-"}\0";
-
-const GLchar* vertSource = 
-"#version 460 core\n"
-"layout(location = 0) in vec3 position;"
-"void main() {"
-"    gl_Position = vec4(position.x, position.y, position.z, 1.0f);"
-"}\0";
-
-void test2d_draw() {
-    GLfloat vertices[] = {
-        -0.5f, -0.5f, 0.0f,
-        -0.25f, 0.0f, 0.0f,
-        0.0f, 0.5f, 0.0f,
-        0.25f, 0.0f, 0.0f,
-        0.5f, -0.5f, 0.0f,
-        0.0f, -0.5f, 0.0f 
-    };
-    GLuint indices[] = {
-        0, 1, 5,
-        1, 2, 3,
-        5, 3, 4
-    };
-
-    gladLoadGL();
-
-    glBindVertexArray(VAO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), (GLvoid*)0);
-    glEnableVertexAttribArray(0);
-    glBindBuffer(GL_ARRAY_BUFFER, 0);
-    glBindVertexArray(0);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-
-    count = 9;
-}
 
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mode) {
     if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS) {
         glfwSetWindowShouldClose(window, GL_TRUE);
     }
 }
+
 
 void Engine_init(int window_width, int window_height, char title[], bool full_screen) {
     #ifdef DEBUG
@@ -128,7 +85,6 @@ void Engine_init(int window_width, int window_height, char title[], bool full_sc
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     const GLchar* fragmentSource = shader_load("C:/Users/takayama/Desktop/project_y/engine/shaders/default.frag");
     glShaderSource(vertexShader, 1, (const GLchar**)&fragmentSource, NULL);
-    glShaderSource(fragmentShader, 1, &fragSource, NULL);
     glCompileShader(fragmentShader);
 
     #ifdef DEBUG

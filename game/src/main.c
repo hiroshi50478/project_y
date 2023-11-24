@@ -11,9 +11,9 @@ extern GLuint VAO, VBO, EBO;
 int main() {
     Engine_init(window_width, window_height, "test", false);
 
-    test2d_draw();
+    // test2d_draw();
 
-    // obj_load("C:/Users/takayama/Desktop/project_y/game/models/obj/triangle.obj");
+    obj_load("C:/Users/takayama/Desktop/project_y/game/models/obj/cube.obj");
 
     while (Engine_event_status()) {
         Engine_event_check();
